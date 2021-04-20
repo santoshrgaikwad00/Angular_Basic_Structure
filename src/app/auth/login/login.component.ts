@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
 import { Router, ActivatedRoute } from "@angular/router";
-// import { AuthenticationService, SharedService } from './../../service/index';
+import { AuthenticationService } from '../../services/index';
 
 @Component({
     selector: 'app-login',
@@ -11,7 +11,7 @@ import { Router, ActivatedRoute } from "@angular/router";
 export class LoginComponent implements OnInit {
 
     public UserLoginForm: FormGroup;
-    private errorMsg: any;
+    public errorMsg: any;
     private returnUrl: string;
     
     // constructor() { }
@@ -19,7 +19,7 @@ export class LoginComponent implements OnInit {
         private router: Router,
         private route: ActivatedRoute,
         private fb: FormBuilder,
-        // private authenticationService: AuthenticationService,
+        private auth: AuthenticationService,
         // private sharedService: SharedService
         ) {
         // redirect to home if already logged in
@@ -30,21 +30,31 @@ export class LoginComponent implements OnInit {
     }
 
     ngOnInit(): void {
-
+      
     }
 
     //Declare Form Group
     createFormGroup() {
         return this.fb.group({
-            username: this.fb.control('',[Validators.required]),
+            email: this.fb.control('',[Validators.required]),
             password: this.fb.control('',[Validators.required]),
         });
       }
 
     onSubmit(value) {
         // get return url from route parameters or default to '/'
-        this.returnUrl = this.route.snapshot.queryParams.returnUrl || '';
-        console.log("value => ", value);
+        // this.returnUrl = this.route.snapshot.queryParams.returnUrl || '';
+        this.auth.get_logged_in(value).subscribe(response=> {
+          if(response.status == "success"){
+            // window.alert(response.data);
+            this.router.navigate(['/admin']);
+            this.auth.setLoggedIn(true);
+          } else {
+            window.alert(response.data);
+          }
+        },  error => this.errorMsg = error ) ;
+        
+
         /* this.authenticationService.Login(value)
         .subscribe(response =>
           {

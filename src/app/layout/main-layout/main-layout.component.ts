@@ -8,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
 export class MainLayoutComponent implements OnInit {
 
   constructor() {
-    console.log('Main layout constructor called');
+    // console.log('Main layout constructor called');
   }
 
   ngOnInit() {

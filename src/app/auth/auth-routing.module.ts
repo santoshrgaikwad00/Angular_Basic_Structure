@@ -4,16 +4,8 @@ import { AuthComponent } from './auth.component';
 import { LoginComponent } from './login/login.component';
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 import { ResetpasswordComponent } from './resetpassword/resetpassword.component';
-// import { FooterOnlyLayoutComponent } from '../layout/footer-only-layout/footer-only-layout.component';
-/* 
-{
-    path: 'login',
-    component: FooterOnlyLayoutComponent,
-    children: [
-      { path: '', component: LoginComponent },
-    ]
-  }
-*/
+import { LogoutComponent } from './logout/logout.component';
+
 const routes: Routes = [
    	{
        path: '',
@@ -34,6 +26,10 @@ const routes: Routes = [
          {
            path: 'resetpassword/:token',
            component: ResetpasswordComponent,
+         },
+         {
+           path: 'logout',
+           component: LogoutComponent,
          }
        ]
     }

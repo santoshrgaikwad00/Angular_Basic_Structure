@@ -10,6 +10,7 @@ import { LoginComponent } from './login/login.component';
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 import { ResetpasswordComponent } from './resetpassword/resetpassword.component';
 import { LayoutModule } from '../layout/layout.module';
+import { LogoutComponent } from './logout/logout.component';
 
 
 @NgModule({
@@ -17,7 +18,8 @@ import { LayoutModule } from '../layout/layout.module';
     AuthComponent,
   	LoginComponent,
   	ForgotPasswordComponent,
-  	ResetpasswordComponent
+  	ResetpasswordComponent,
+   LogoutComponent
   ],
   imports: [
   	CommonModule,

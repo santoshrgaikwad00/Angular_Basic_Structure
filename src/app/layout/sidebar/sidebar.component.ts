@@ -9,7 +9,7 @@ import { Router } from '@angular/router';
 export class SidebarComponent implements OnInit {
 
   constructor(private router : Router) {
-    console.log('Sidebar constructor called');
+    // console.log('Sidebar constructor called');
   }
 
   ngOnInit() {
