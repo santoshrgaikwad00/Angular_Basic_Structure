@@ -1,81 +1,84 @@
 <!-- Sidebar -->
-<ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+<div *ngIf="loginCheck; then AdminBlock else FrontensBlock"></div>
 
-    <!-- Sidebar - Brand -->
-    <a class="sidebar-brand d-flex align-items-center justify-content-center" routerLink="/">
-        <div class="sidebar-brand-icon rotate-n-15">
-            <i class="fas fa-laugh-wink"></i>
+<ng-template #AdminBlock>
+    <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar" >
+        <!-- Sidebar - Brand -->
+        <a class="sidebar-brand d-flex align-items-center justify-content-center" routerLink="/">
+            <div class="sidebar-brand-icon rotate-n-15">
+                <i class="fas fa-laugh-wink"></i>
+            </div>
+            <div class="sidebar-brand-text mx-3">SG Admin <sup>2</sup></div>
+        </a>
+        <!-- Divider -->
+        <hr class="sidebar-divider my-0">
+        <!-- Nav Item - Dashboard -->
+        <li class="nav-item active">
+            <a class="nav-link" routerLink="/admin" >
+                <i class="fas fa-fw fa-tachometer-alt"></i>
+                <span>Admin Dashboard</span></a>
+        </li>
+        <!-- Nav Item - Dashboard -->
+        <li class="nav-item active">
+            <a class="nav-link" routerLink="/admin/config" >
+                <i class="fas fa-fw fa-tachometer-alt"></i>
+                <span>Admin Configuration</span></a>
+        </li>
+        <!-- Nav Item - Dashboard -->
+        <li class="nav-item active">
+            <a class="nav-link" routerLink="/admin/setting" >
+                <i class="fas fa-fw fa-tachometer-alt"></i>
+                <span>Admin Settings</span></a>
+        </li>
+    </ul>
+</ng-template>
+
+<ng-template #FrontensBlock>
+    <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+        <!-- Sidebar - Brand -->
+        <a class="sidebar-brand d-flex align-items-center justify-content-center" routerLink="/">
+            <div class="sidebar-brand-icon rotate-n-15">
+                <i class="fas fa-laugh-wink"></i>
+            </div>
+            <div class="sidebar-brand-text mx-3">SG Frontend <sup>2</sup></div>
+        </a>
+        <!-- Divider -->
+        <hr class="sidebar-divider my-0">
+        <!-- Nav Item - Dashboard -->
+        <li class="nav-item active">
+            <a class="nav-link" routerLink="/" >
+                <i class="fas fa-fw fa-tachometer-alt"></i>
+                <span>f Dashboard</span></a>
+        </li>
+        <!-- Divider -->
+        <hr class="sidebar-divider">
+        <!-- Heading -->
+        <div class="sidebar-heading">
+            Interface
         </div>
-        <div class="sidebar-brand-text mx-3">SB Admin <sup>2</sup></div>
-    </a>
-
-    <!-- Divider -->
-    <hr class="sidebar-divider my-0">
-
-    <!-- Nav Item - Dashboard -->
-    <li class="nav-item active">
-        <a class="nav-link" routerLink="/admin" >
-            <i class="fas fa-fw fa-tachometer-alt"></i>
-            <span>Admin Dashboard</span></a>
-    </li>
-    <!-- Nav Item - Dashboard -->
-    <li class="nav-item active">
-        <a class="nav-link" routerLink="/admin/config" >
-            <i class="fas fa-fw fa-tachometer-alt"></i>
-            <span>Admin Configuration</span></a>
-    </li>
-    <!-- Nav Item - Dashboard -->
-    <li class="nav-item active">
-        <a class="nav-link" routerLink="/admin/setting" >
-            <i class="fas fa-fw fa-tachometer-alt"></i>
-            <span>Admin Settings</span></a>
-    </li>
-    <!-- Nav Item - Dashboard -->
-    <li class="nav-item active">
-        <a class="nav-link" routerLink="/" >
-            <i class="fas fa-fw fa-tachometer-alt"></i>
-            <span>f Dashboard</span></a>
-    </li>
-
-    <!-- Divider -->
-    <hr class="sidebar-divider">
-
-    <!-- Heading -->
-    <div class="sidebar-heading">
-        Interface
-    </div>
-
-    <!-- Nav Item - Pages Collapse Menu -->
-    <li class="nav-item">
-        <a class="nav-link" routerLink="/about" >
-            <i class="fas fa-fw fa-cog"></i>
-            <span>About</span>
-        </a>
-    </li>
-
-  
-    <!-- Divider -->
-    <hr class="sidebar-divider">
-
-    <!-- Heading -->
-    <div class="sidebar-heading">
-        Addons
-    </div>
-
-    <li class="nav-item">
-        <a class="nav-link" routerLink="/about" >
-            <i class="fas fa-fw fa-cog"></i>
-            <span>About</span>
-        </a>
-    </li>
-  <!-- Nav Item - Pages Collapse Menu -->
-  
+        <!-- Nav Item - Pages Collapse Menu -->
+        <li class="nav-item">
+            <a class="nav-link" routerLink="/about" >
+                <i class="fas fa-fw fa-cog"></i>
+                <span>About</span>
+            </a>
+        </li>
+        <!-- Divider -->
+        <hr class="sidebar-divider">
+        <!-- Heading -->
+        <div class="sidebar-heading">
+            Addons
+        </div>
+        <li class="nav-item">
+            <a class="nav-link" routerLink="/about" >
+                <i class="fas fa-fw fa-cog"></i>
+                <span>About</span>
+            </a>
+        </li>
+        <!-- Divider -->
+        <hr class="sidebar-divider d-none d-md-block">
+    </ul>
+</ng-template>
 
 
-  <!-- Divider -->
-  <hr class="sidebar-divider d-none d-md-block">
 
-  
-
-</ul>
-<!-- End of Sidebar -->

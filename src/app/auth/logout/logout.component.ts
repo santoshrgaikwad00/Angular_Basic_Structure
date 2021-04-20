@@ -4,9 +4,9 @@ import { AuthenticationService } from 'src/app/services';
 // import { AuthenticationService } from '../../services/index';
 
 @Component({
-  selector: 'app-logout',
-  templateUrl: './logout.component.html',
-  styleUrls: ['./logout.component.css']
+    selector: 'app-logout',
+    templateUrl: './logout.component.html',
+    styleUrls: ['./logout.component.css']
 })
 export class LogoutComponent implements OnInit {
 
@@ -14,8 +14,15 @@ export class LogoutComponent implements OnInit {
               private router : Router  ) { }
 
   ngOnInit(): void {
-    this.auth.setLoggedIn(false);
-    this.router.navigate(['/admin']);
+      this.auth.get_logged_out().subscribe(response =>{
+        if (response.status == 'success') {
+            this.auth.setLoggedIn(false);
+            localStorage.removeItem('loggedIn');
+            this.router.navigate(['/home']);
+        } else {
+            window.alert(response.data);
+        }
+      });
   }
 
 }

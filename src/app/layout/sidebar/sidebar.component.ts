@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { AuthenticationService } from 'src/app/services';
 
 @Component({
   selector: 'app-sidebar',
@@ -7,12 +8,14 @@ import { Router } from '@angular/router';
   styleUrls: ['./sidebar.component.css']
 })
 export class SidebarComponent implements OnInit {
+    public loginCheck : any = false;
 
-  constructor(private router : Router) {
-    // console.log('Sidebar constructor called');
-  }
+    constructor(private router : Router, private auth : AuthenticationService) {
+      // console.log('Sidebar constructor called');
+    }
 
-  ngOnInit() {
-  }
+    ngOnInit() {
+        this.loginCheck = this.auth.isLoggedIn;        
+    }
 
 }

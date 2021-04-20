@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { AuthenticationService } from 'src/app/services';
 
 @Component({
   selector: 'app-header',
@@ -7,12 +8,13 @@ import { Router } from '@angular/router';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
+    public loginCheck : any = false;
+    constructor(private router : Router, private auth : AuthenticationService) {
+      // console.log('Header constructor called');
+    }
 
-  constructor(private router : Router) {
-    // console.log('Header constructor called');
-  }
-
-  ngOnInit() {
-  }
+    ngOnInit() {
+      this.loginCheck = this.auth.isLoggedIn; // || JSON.parse( localStorage.getItem('loggedIn'));
+    }
 
 }
