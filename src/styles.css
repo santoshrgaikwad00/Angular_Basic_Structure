@@ -20,6 +20,7 @@ VENDOR CSS
  * Copyright 2011-2020 Twitter, Inc.
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
  */
+
  :root {
     --blue: #4e73df;
     --indigo: #6610f2;
@@ -1758,6 +1759,9 @@ VENDOR CSS
     background-color: #5a5c69;
   }
   
+  .activeCls {
+      background-color: #4e73df;
+  }
   .table-dark th,
   .table-dark td,
   .table-dark thead th {
@@ -10141,7 +10145,7 @@ VENDOR CSS
   }
   
   .topbar {
-    height: 4.375rem;
+    height: 3.375rem;
   }
   
   .topbar #sidebarToggleTop {
@@ -10174,7 +10178,7 @@ VENDOR CSS
   }
   
   .topbar .nav-item .nav-link {
-    height: 4.375rem;
+    height: 3.375rem;
     display: flex;
     align-items: center;
     padding: 0 0.75rem;

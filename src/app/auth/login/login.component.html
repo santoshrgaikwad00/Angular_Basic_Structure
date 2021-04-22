@@ -1,7 +1,14 @@
 <div class="row mb-4">
     <div class="col-sm-4"></div>
-    <div class="col-sm-4 text-center">
-      <h4 class="text-center"><b> Login </b></h4> <br/><br/>
+    <div class="col-sm-4 ">
+      <h4 class="text-center"><b> Login </b></h4> <br/>
+      <div  *ngIf="errorMsg; then TrueBlock else FalseBlock"> </div>
+      <ng-template #TrueBlock>
+          <div class="alert alert-danger"> {{errorMsg}} </div>
+      </ng-template>
+      <ng-template #FalseBlock>
+        <br/>
+    </ng-template>
       <form autocomplete="off" #userLoginForm="ngForm" [formGroup]="UserLoginForm" (ngSubmit)="onSubmit(UserLoginForm.value)" novalidate autocomplete="off">
         <div class="form-group">
           <!-- <label>Username: </label> -->
@@ -14,8 +21,8 @@
               [formControl]="UserLoginForm.get('email')"
               class="form-control"
               [class.is-invalid]="UserLoginForm.get('email').invalid && UserLoginForm.get('email').touched" />
-            <!-- <mat-error *ngIf="UserLoginForm.get('username').invalid || UserLoginForm.get('username').untouched">Enter Username</mat-error>
-          </mat-form-field> -->
+            <div class="alert alert-danger" *ngIf="UserLoginForm.get('email').invalid && UserLoginForm.get('email').touched"><h6>Enter email </h6></div>
+          <!-- </mat-form-field> -->
         </div>
         <div class="form-group"> 
             <!-- <label>Password: </label> -->
@@ -30,12 +37,12 @@
                 [formControl]="UserLoginForm.get('password')"
                 class="form-control"
                 [class.is-invalid]="UserLoginForm.get('password').invalid && UserLoginForm.get('password').touched" />
-              <!-- <mat-error *ngIf="UserLoginForm.get('password').invalid || UserLoginForm.get('password').untouched">Enter Password</mat-error>
-            </mat-form-field> -->
+              <div class="alert alert-danger" *ngIf="UserLoginForm.get('password').invalid && UserLoginForm.get('password').touched"><h6>Enter Password</h6></div>
+            <!-- </mat-form-field> -->
         </div>
-        <b> <a routerLink="/auth/forgot"> Forgot your password?</a> </b> <br/><br/>
+        <div class="text-center"> <b> <a routerLink="/auth/forgot"> Forgot your password?</a> </b> <br/><br/> </div>
         <!-- <button type="submit" mat-raised-button color="primary" [disabled]="!UserLoginForm.valid">Submit</button> -->
-        <button type="submit" class="btn btn-primary" [disabled]="!UserLoginForm.valid">Submit</button>
+        <div class="text-center"> <button type="submit" class="btn btn-primary text-center" [disabled]="!UserLoginForm.valid">Submit</button> </div>
       </form>
     </div>
     <div class="col-sm-4"></div>

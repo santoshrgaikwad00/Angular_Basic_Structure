@@ -36,8 +36,10 @@ export class LoginComponent implements OnInit {
     //Declare Form Group
     createFormGroup() {
         return this.fb.group({
-            email: this.fb.control('',[Validators.required]),
-            password: this.fb.control('',[Validators.required]),
+            // email: this.fb.control('',[Validators.required]), // SAME WORK AS BELOW FEILD
+            // password: this.fb.control('',[Validators.required]), // SAME WORK AS BELOW FEILD
+            email: ['',[Validators.required]],
+            password: ['',[Validators.required]],
         });
       }
 
@@ -50,7 +52,7 @@ export class LoginComponent implements OnInit {
             this.router.navigate(['/admin']);
             this.auth.setLoggedIn(true);
           } else {
-            window.alert(response.data);
+            this.errorMsg = response.data;
           }
         },  error => this.errorMsg = error ) ;
         
