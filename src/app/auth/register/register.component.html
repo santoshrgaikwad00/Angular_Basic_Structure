@@ -1,0 +1,60 @@
+<div class="row mb-4">
+    <div class="col-sm-4"></div>
+    <div class="col-sm-4 ">
+      <h4 class="text-center"><b> Register </b></h4> <br/>
+      <div  *ngIf="errorMsg; then TrueBlock else FalseBlock"> </div>
+      <ng-template #TrueBlock>
+          <div class="alert alert-danger"> {{errorMsg}} </div>
+      </ng-template>
+      <ng-template #FalseBlock>
+        <br/>
+    </ng-template>
+      <form autocomplete="off" #userRegisterForm="ngForm" [formGroup]="UserRegisterForm" (ngSubmit)="onSubmit(UserRegisterForm.value)" novalidate autocomplete="off">
+        <div class="form-group">         
+            <input required
+              name="firstname"
+              placeholder="First name" 
+              formControlName="firstname" 
+              [formControl]="UserRegisterForm.get('firstname')"
+              class="form-control"
+              [class.is-invalid]="UserRegisterForm.get('firstname').invalid && UserRegisterForm.get('firstname').touched" />
+            <div class="alert alert-danger" *ngIf="UserRegisterForm.get('firstname').invalid && UserRegisterForm.get('firstname').touched"><h6>Enter firstname </h6></div>
+        </div>
+        <div class="form-group">         
+            <input required
+              name="lastname"
+              placeholder="Last name" 
+              formControlName="lastname" 
+              [formControl]="UserRegisterForm.get('lastname')"
+              class="form-control"
+              [class.is-invalid]="UserRegisterForm.get('lastname').invalid && UserRegisterForm.get('lastname').touched" />
+            <div class="alert alert-danger" *ngIf="UserRegisterForm.get('lastname').invalid && UserRegisterForm.get('lastname').touched"><h6>Enter lastname </h6></div>
+        </div>
+        <div class="form-group">         
+            <input required
+              name="email"
+              placeholder="Email" 
+              formControlName="email" 
+              [formControl]="UserRegisterForm.get('email')"
+              class="form-control"
+              [class.is-invalid]="UserRegisterForm.get('email').invalid && UserRegisterForm.get('email').touched" />
+            <div class="alert alert-danger" *ngIf="UserRegisterForm.get('email').invalid && UserRegisterForm.get('email').touched"><h6>Enter email </h6></div>
+        </div>
+        <div class="form-group"> 
+            <input 
+                required
+                type="password"
+                name="password"
+                placeholder="Password" 
+                formControlName="password" 
+                [formControl]="UserRegisterForm.get('password')"
+                class="form-control"
+                [class.is-invalid]="UserRegisterForm.get('password').invalid && UserRegisterForm.get('password').touched" />
+              <div class="alert alert-danger" *ngIf="UserRegisterForm.get('password').invalid && UserRegisterForm.get('password').touched"><h6>Enter Password</h6></div>
+        </div>
+        <div class="text-center"> <b> <a routerLink="/auth/login"> Login </a> </b> <br/><br/> </div>
+        <div class="text-center"> <button type="submit" class="btn btn-primary text-center" [disabled]="!UserRegisterForm.valid">Submit</button> </div>
+      </form>
+    </div>
+    <div class="col-sm-4"></div>
+</div>
