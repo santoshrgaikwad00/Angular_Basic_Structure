@@ -39,18 +39,21 @@ export class RegisterComponent implements OnInit {
             lastname: ['',[Validators.required]],
             email: ['',[Validators.required]],
             password: ['',[Validators.required]],
+            cpassword: ['',[Validators.required]],
         });
       }
 
     onSubmit(value) {
-        console.log(value); return;
-        // get return url from route parameters or default to '/'
-        // this.returnUrl = this.route.snapshot.queryParams.returnUrl || '';
-        this.auth.get_logged_in(value).subscribe(response=> {
+        if (value.password != value.cpassword) {
+            this.errorMsg = "Password & Confirm password is not match";
+            return; 
+        }
+        this.auth.add_user(value).subscribe(response=> {
+          console.log("register response =>", response); return;
           if(response.status == "success"){
             // window.alert(response.data);
-            this.router.navigate(['/admin']);
-            this.auth.setLoggedIn(true);
+            // this.router.navigate(['/auth']);
+            // this.auth.setLoggedIn(true);
           } else {
             this.errorMsg = response.data;
           }

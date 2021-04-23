@@ -52,6 +52,18 @@
                 [class.is-invalid]="UserRegisterForm.get('password').invalid && UserRegisterForm.get('password').touched" />
               <div class="alert alert-danger" *ngIf="UserRegisterForm.get('password').invalid && UserRegisterForm.get('password').touched"><h6>Enter Password</h6></div>
         </div>
+        <div class="form-group"> 
+            <input 
+                required
+                type="password"
+                name="cpassword"
+                placeholder="Confirm Password" 
+                formControlName="cpassword" 
+                [formControl]="UserRegisterForm.get('cpassword')"
+                class="form-control"
+                [class.is-invalid]="UserRegisterForm.get('cpassword').invalid && UserRegisterForm.get('cpassword').touched" />
+              <div class="alert alert-danger" *ngIf="UserRegisterForm.get('cpassword').invalid && UserRegisterForm.get('cpassword').touched"><h6>Enter Confirm Password</h6></div>
+        </div>
         <div class="text-center"> <b> <a routerLink="/auth/login"> Login </a> </b> <br/><br/> </div>
         <div class="text-center"> <button type="submit" class="btn btn-primary text-center" [disabled]="!UserRegisterForm.valid">Submit</button> </div>
       </form>

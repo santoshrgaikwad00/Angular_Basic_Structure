@@ -1,10 +1,11 @@
 import { Injectable } from '@angular/core';
-import {  HttpClient } from "@angular/common/http"
+// import {  HttpClient } from "@angular/common/http";
+import { HttpClient, HttpParams, HttpHeaders, HttpErrorResponse, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 interface loginData {
     status : string,
-    data : string
+    data : any
 };
 
 interface chk_is_logged_in {
@@ -21,7 +22,8 @@ interface logoutStatus {
     providedIn: 'root'
 })
 export class AuthenticationService {
-    private API_URL = "http://localhost/";
+    private API_URL = "http://localhost/ci_rest_api/";
+    private API_URL1 = "http://localhost/";
     private loggedInStatus = JSON.parse(localStorage.getItem('loggedIn') || 'false'); // false; // 
 
     constructor(private http: HttpClient) { }
@@ -37,7 +39,7 @@ export class AuthenticationService {
 
     // GET'S LOGIN AND START SESSION....
     get_logged_in(request){
-        return this.http.post<loginData>(this.API_URL+"php_api/auth.php?action=login", {
+        return this.http.post<loginData>(this.API_URL1+"php_api/auth.php?action=login", {
             email : request.email,
             password : request.password
         });
@@ -45,11 +47,22 @@ export class AuthenticationService {
 
     // CHECK SESSION IS STILL AVAILABEL....
     chk_is_logged_in() : Observable<chk_is_logged_in>{
-        return this.http.get<chk_is_logged_in>(this.API_URL+"php_api/auth.php?action=isLoggedIn");
+        return this.http.get<chk_is_logged_in>(this.API_URL1+"php_api/auth.php?action=isLoggedIn");
     }
 
     // GET'S LOGOUT AND DISTROY SESSION....
     get_logged_out(){
-        return this.http.get<logoutStatus>(this.API_URL+"php_api/auth.php?action=logout");
+        return this.http.get<logoutStatus>(this.API_URL1+"php_api/auth.php?action=logout");
+    }
+
+    // ADD USER TO DB....
+    add_user(request){
+        return this.http.post<loginData>(this.API_URL+"Users/add_user", {
+                firstname : request.firstname,
+                lastname : request.lastname,
+                email : request.email,
+                password : request.password
+            }, { "headers": { "Accept":"multipart/form-data", "Content-Type": "application/x-www-form-urlencoded" }
+        });
     }
 }
