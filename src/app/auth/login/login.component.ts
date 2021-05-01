@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
 import { Router, ActivatedRoute } from "@angular/router";
+import { ToastrService } from 'ngx-toastr';
 import { AuthenticationService } from '../../services/index';
 
 @Component({
@@ -20,6 +21,7 @@ export class LoginComponent implements OnInit {
         private route: ActivatedRoute,
         private fb: FormBuilder,
         private auth: AuthenticationService,
+        private toastr: ToastrService,
         // private sharedService: SharedService
         ) {
         // redirect to home if already logged in
@@ -49,9 +51,11 @@ export class LoginComponent implements OnInit {
         this.auth.get_logged_in(value).subscribe(response=> {
           if(response.status == "success"){
             // window.alert(response.data);
+            this.toastr.success('Login successfully !!', 'success!');
             this.router.navigate(['/admin']);
             this.auth.setLoggedIn(true);
           } else {
+            this.toastr.error(response.data, 'Error!');
             this.errorMsg = response.data;
           }
         },  error => this.errorMsg = error ) ;

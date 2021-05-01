@@ -2,21 +2,22 @@
 
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+// import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-// import { AdminComponent } from './admin/admin.component';
+import { SharedModule } from './shared.module';
 
 @NgModule({
   declarations: [
     AppComponent,
-    // AdminComponent
   ],
   imports: [
     BrowserModule,
-    ReactiveFormsModule,
-    FormsModule,
+    BrowserAnimationsModule,
+    SharedModule,
+    // ReactiveFormsModule, FormsModule,
     AppRoutingModule,
     HttpClientModule
   ],

@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-
+// import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { SharedModule } from '../shared.module';
 
 
 import { AuthRoutingModule } from './auth-routing.module';
@@ -27,8 +27,8 @@ import { RegisterComponent } from './register/register.component';
   	CommonModule,
     LayoutModule,
     AuthRoutingModule,
-    ReactiveFormsModule,
-    FormsModule
+    // ReactiveFormsModule, FormsModule,
+    SharedModule
   ]
 })
 export class AuthModule { }

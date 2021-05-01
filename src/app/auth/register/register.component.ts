@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
 import { Router, ActivatedRoute } from "@angular/router";
 import { AuthenticationService } from '../../services/index';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
     selector: 'app-register',
@@ -18,6 +19,7 @@ export class RegisterComponent implements OnInit {
         private route: ActivatedRoute,
         private fb: FormBuilder,
         private auth: AuthenticationService,
+        private toastr: ToastrService,
         // private sharedService: SharedService
         ) {
         // redirect to home if already logged in
@@ -48,29 +50,23 @@ export class RegisterComponent implements OnInit {
             this.errorMsg = "Password & Confirm password is not match";
             return; 
         }
-        this.auth.add_user(value).subscribe(response=> {
-          console.log("register response =>", response); return;
+        const formData = new FormData();
+        formData.append('firstname', value.firstname);
+        formData.append('lastname', value.lastname);
+        formData.append('email', value.email);
+        formData.append('password', value.password);
+
+        this.auth.add_user(formData).subscribe(response=> {
+          // console.log("register response =>", response); return;
           if(response.status == "success"){
-            // window.alert(response.data);
-            // this.router.navigate(['/auth']);
-            // this.auth.setLoggedIn(true);
+            console.log("success 11");
+            this.UserRegisterForm.reset();
+            this.toastr.success('Hello world!', 'Toastr fun!');
           } else {
             this.errorMsg = response.data;
           }
-        },  error => this.errorMsg = error ) ;
-        
-
-        /* this.authenticationService.Login(value)
-        .subscribe(response =>
-          {
-            if(response.status == 200){
-              this.sharedService.openSnackBar('Logged in successfully !', 'Success', { duration: 4000 });
-              this.router.navigate([this.returnUrl]);
-            }
-            else {
-              this.sharedService.openSnackBar('Invalid Username/Password', 'Error', { duration: 4000 });
-            }
-          },
-          error => this.errorMsg = error); */
+        },  error => this.errorMsg = error );
     }
+
+    
 }

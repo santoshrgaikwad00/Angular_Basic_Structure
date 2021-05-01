@@ -7,8 +7,8 @@
           <div class="alert alert-danger"> {{errorMsg}} </div>
       </ng-template>
       <ng-template #FalseBlock>
-        <br/>
-    </ng-template>
+          <br/>
+      </ng-template>
       <form autocomplete="off" #userRegisterForm="ngForm" [formGroup]="UserRegisterForm" (ngSubmit)="onSubmit(UserRegisterForm.value)" novalidate autocomplete="off">
         <div class="form-group">         
             <input required

@@ -57,12 +57,6 @@ export class AuthenticationService {
 
     // ADD USER TO DB....
     add_user(request){
-        return this.http.post<loginData>(this.API_URL+"Users/add_user", {
-                firstname : request.firstname,
-                lastname : request.lastname,
-                email : request.email,
-                password : request.password
-            }, { "headers": { "Accept":"multipart/form-data", "Content-Type": "application/x-www-form-urlencoded" }
-        });
+        return this.http.post<loginData>(this.API_URL+"Auth/add_user", request);
     }
 }
