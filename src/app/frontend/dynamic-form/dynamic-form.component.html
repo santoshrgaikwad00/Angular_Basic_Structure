@@ -1,0 +1,50 @@
+<p>dynamic-form works!</p>
+<!-- <div class="alert alert-danger" *ngIf="dynamicForm.controls[controls.name].invalid && dynamicForm.controls[controls.name].touched"><h6>Enter firstname </h6></div> -->
+    <!-- <form autocomplete="off" #DynamicForm="ngForm" [formGroup]="dynamicForm" (ngSubmit)="onSubmit()" novalidate autocomplete="off">
+        
+        <ng-container *ngFor="let controls of fields">
+            <input  
+                type="text"
+                formControlName="{{controls.name}}"
+                [formControlName]="controls.name"
+                [formControl]="dynamicForm.get(controls.name)"
+                class="form-control"
+                
+            /> 
+            <br>
+            <ng-container *ngFor="let validation of controls.validations">
+                <span *ngIf="dynamicForm.controls[controls.name].touched && dynamicForm.controls[controls.name].errors">
+                    <p *ngIf="dynamicForm.controls[controls.name].errors[validation.name]">
+                      {{validation.message}}
+                    </p>
+                  </span>
+              </ng-container>
+        </ng-container>
+        <br>
+        <input type="submit" [disabled]="!dynamicForm.valid"/>
+    </form> -->
+
+
+
+    <form [formGroup]="dynamicForm" (ngSubmit)="onSubmit()" novalidate>
+        <ng-container *ngFor="let controls of fields">
+          {{controls.label}}
+          <input type="text" [formControlName]="controls.name"/>
+          <ng-container *ngFor="let validation of controls.validations">
+            <span *ngIf="dynamicForm.controls[controls.name].touched && dynamicForm.controls[controls.name].errors">
+                <p *ngIf="dynamicForm.controls[controls.name].errors[validation.name]">
+                  {{validation.message}}
+                </p>
+              </span>
+          </ng-container>
+          <br>
+        </ng-container>
+        <br>
+        <input type="submit" [disabled]="!dynamicForm.valid"/>
+    </form>
+      
+      
+    <p>{{dynamicForm.value | json }} </p>
+
+
+

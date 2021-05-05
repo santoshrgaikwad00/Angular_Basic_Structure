@@ -1,0 +1,87 @@
+
+<div class="row">
+	<div class="col-sm-6" > 
+        <div class="col-sm-12">
+            <button class="btn btn-primary mb-2" (click)="addFields('Text')">Text Input</button> <br>
+            <button class="btn btn-primary mb-2" (click)="addFields('Checkbox')">Checkbox</button> <br>
+            <button class="btn btn-primary mb-2" (click)="addFields('Select')">Select</button> <br>
+            <button class="btn btn-primary mb-2" (click)="addFields('Radio')">Radio</button> <br>
+            <button class="btn btn-primary mb-2" (click)="addFields('Textarea')">Textarea</button>
+        </div>
+    </div>
+    <div class="col-sm-6" style="overflow: auto; max-height: 300px;" > <pre> {{ fields | json }} </pre> </div>
+    <div class="clearfix"></div>
+    <div class="col-sm-8">
+        <form [formGroup]="dynamicForm" (ngSubmit)="onSubmit()" novalidate>
+            <ng-container *ngFor="let controls of fields">
+                <div class="form-group" *ngIf="controls.type === 'text'"> 
+                    <label> {{controls.label}} </label>
+                    <!-- <input type="text" [formControlName]="controls.name"/> -->
+                    <input  
+                        type="text"
+                        formControlName="{{controls.name}}"
+                        [formControlName]="controls.name"
+                        [formControl]="dynamicForm.get(controls.name)"
+                        class="form-control"
+                        [class.is-invalid]="dynamicForm.get(controls.name).invalid && dynamicForm.get(controls.name).touched"
+                    /> 
+                    <div class="alert alert-danger" *ngIf="dynamicForm.get(controls.name).invalid && dynamicForm.get(controls.name).touched"><h6>Enter {{controls.name}}</h6></div>
+                </div>
+                <!-- <ng-container *ngFor="let validation of controls.validations">
+                    <span *ngIf="dynamicForm.controls[controls.name].touched && dynamicForm.controls[controls.name].errors">
+                        <p *ngIf="dynamicForm.controls[controls.name].errors[validation.name]">
+                        {{validation.message}}
+                        </p>
+                    </span>
+                </ng-container> -->
+                <div class="form-group" *ngIf="controls.type === 'select'"> 
+                    <label> {{controls.label}} </label>
+                    <!-- <input type="text" [formControlName]="controls.name"/> -->
+                    <select  
+                        formControlName="{{controls.name}}"
+                        [formControlName]="controls.name"
+                        [formControl]="dynamicForm.get(controls.name)"
+                        class="form-control"
+                        [class.is-invalid]="dynamicForm.get(controls.name).invalid && dynamicForm.get(controls.name).touched"
+                    >   
+                        <option value="">Select</option>
+                        <option *ngFor="let opt of controls.options" [value]="opt.val">{{opt.label}}</option>
+                        
+                    </select>
+
+                    <div class="alert alert-danger" *ngIf="dynamicForm.get(controls.name).invalid && dynamicForm.get(controls.name).touched"><h6>Enter {{controls.name}}</h6></div>
+                </div>
+                <!-- <ng-container *ngFor="let validation of controls.validations">
+                    <span *ngIf="dynamicForm.controls[controls.name].touched && dynamicForm.controls[controls.name].errors">
+                        <p *ngIf="dynamicForm.controls[controls.name].errors[validation.name]">
+                        {{validation.message}}
+                        </p>
+                    </span>
+                </ng-container> -->
+                <div class="form-group" *ngIf="controls.type === 'checkboxs'"> 
+                    <label> {{controls.label}} </label>
+                    <!-- <input type="text" [formControlName]="controls.name"/> -->
+                    <select  
+                        formControlName="{{controls.name}}"
+                        [formControlName]="controls.name"
+                        [formControl]="dynamicForm.get(controls.name)"
+                        class="form-control"
+                        [class.is-invalid]="dynamicForm.get(controls.name).invalid && dynamicForm.get(controls.name).touched"
+                    >   
+                        <option value="">Select</option>
+                        <option *ngFor="let opt of controls.options" [value]="opt.val">{{opt.label}}</option>
+                        
+                    </select>
+
+                    <div class="alert alert-danger" *ngIf="dynamicForm.get(controls.name).invalid && dynamicForm.get(controls.name).touched"><h6>Enter {{controls.name}}</h6></div>
+                </div>
+                <br>
+            </ng-container>
+            <br>
+            <input type="submit" [disabled]="!dynamicForm.valid"/>
+        </form>
+
+        <p>{{dynamicForm.value | json }} </p>
+    </div>
+    <div class="col-sm-4"></div>      
+</div>

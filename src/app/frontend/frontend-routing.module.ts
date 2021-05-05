@@ -4,7 +4,7 @@ import { AuthGuard } from './../guards/auth.guard';
 import { FrontendComponent } from './frontend.component';
 import { HomeComponent } from './home/home.component';
 import { AboutComponent } from './about/about.component';
-// import { FormsComponent } from './forms/forms.component';
+import { FormsComponent } from './forms/forms.component';
 
 const routes: Routes = [
    	{
@@ -23,11 +23,11 @@ const routes: Routes = [
             path: 'about',
             component: AboutComponent
          },
-        //  {
-        //    path: 'forms/:id',
-        //    component: FormsComponent,
-        //    canActivate: [AuthGuard]
-        //  }
+         {
+           path: 'forms', // path: 'forms/:id',
+           component: FormsComponent,
+           // canActivate: [AuthGuard]
+         }
        ]
     }
 ];
